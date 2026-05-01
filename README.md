@@ -7,7 +7,7 @@
 ![Filter](https://img.shields.io/badge/Filter-Kalman-blueviolet)
 
 A full state estimation pipeline for the **linear vertical dynamics of a passenger vehicle** with **7 degrees of freedom (DOF)**, implemented in MATLAB and Simulink. The system is excited by four independent road profile inputs, corrupted by process and measurement noise, and the full state vector (positions + velocities) is recovered using a **discrete-time Kalman Filter**.
-![Mean Error Histogram](results/mean_error_histogram.png)
+![Mean Error Histogram](results/mean_error_histogram.jpg)
 
 Developed as an examination project for the university course:  
 *„Zustands- und Parameterschätzung am Beispiel der KFZ-Längsdynamik"*
@@ -176,12 +176,12 @@ The model was run **N = 10 times** with different random seeds. Mean Square Erro
 ### Displacement & Rotation Estimates
 | $z_5$ | $\Phi$ | $\Theta$ |
 |---|---|---|
-| ![](results/z5_estimation.png) | ![](results/phi_roll_estimation.png) | ![](results/theta_pitch_estimation.png) |
+| ![](results/z5_estimation.jpg) | ![](results/phi_roll_estimation.jpg) | ![](results/theta_pitch_estimation.jpg) |
 
 ### Velocity Estimates
 | $\dot{z}_5$ | $\dot{\Phi}$ | $\dot{\Theta}$ |
 |---|---|---|
-| ![](results/velocity_z5.png) | ![](results/roll_rate.png) | ![](results/pitch_rate.png) |
+| ![](results/velocity_z5.jpg) | ![](results/roll_rate.jpg) | ![](results/pitch_rate.jpg) |
 
 **Key observations:**
 - The KF estimated positions ($z_5$, $\Phi$, $\Theta$) match the real values closely — error comparable to the simulation noise floor
@@ -209,11 +209,11 @@ vehicle-vertical-dynamics-kf/
 │
 └── results/
     └── figures/
-        ├── z5_estimation.png
-        ├── phi_estimation.png
-        ├── theta_estimation.png
-        ├── velocity_z5.png
-        └── mean_error_histogram.png
+        ├── z5_estimation.jpg
+        ├── phi_estimation.jpg
+        ├── theta_estimation.jpg
+        ├── velocity_z5.jpg
+        └── mean_error_histogram.jpg
 ```
 
 ---
