@@ -136,7 +136,7 @@ The Kalman gain computation uses MATLAB's `\` (matrix right-division) to avoid e
 The Simulink model is structured into four clearly separated subsystems:
 
 ```
-Vertikaldynamik_Fahrzeug.slx
+vertical_dynamics_vehicle.slx
 │
 ├── 🔴 Einlesen
 │       Road excitation signals (u1–u4, du1–du4) from MATLAB workspace
@@ -191,7 +191,7 @@ vehicle-vertical-dynamics-kf/
 ├── src/
 │   ├── main.m                        ← Main script: parameters, excitation, Monte Carlo loop
 │   ├── kalman_filter.m               ← Kalman Filter MATLAB Function (called by Simulink)
-│   └── Vertikaldynamik_Fahrzeug.slx  ← Simulink model (plant + noise + KF + scopes)
+│   └── vertical_dynamics_vehicle.slx  ← Simulink model (plant + noise + KF + scopes)
 │
 ├── docs/
 │   └── report.pdf                    ← Full project report (German)
@@ -220,7 +220,7 @@ vehicle-vertical-dynamics-kf/
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/<your-username>/vehicle-vertical-dynamics-kf.git
+   git clone https://github.com/navis-stella/vehicle-vertical-dynamics-kf.git
    cd vehicle-vertical-dynamics-kf
    ```
 
@@ -236,14 +236,14 @@ vehicle-vertical-dynamics-kf/
    This will:
    - Initialize all system parameters and noise covariances
    - Generate road excitation signals
-   - Open and run `Vertikaldynamik_Fahrzeug.slx` for N = 10 Monte Carlo iterations
+   - Open and run `vertical_dynamics_vehicle.slx` for N = 10 Monte Carlo iterations
    - Export all results to the MATLAB workspace
    - Plot the mean MSE histogram
 
 4. To inspect individual signals, open the Simulink model and run it directly:
    ```matlab
-   open('Vertikaldynamik_Fahrzeug.slx')
-   sim('Vertikaldynamik_Fahrzeug.slx', 10)
+   open('vertical_dynamics_vehicle.slx')
+   sim('vertical_dynamics_vehicle.slx', 10)
    ```
 
 ### Tuning the Filter
@@ -302,7 +302,6 @@ sigma_mtheta = 0.1;   % pitch angle sensor [rad]
 
 | Limitation | Potential improvement |
 |---|---|
-| Forward Euler discretization | Use `expm(A_c * Ts)` for exact zero-order hold discretization |
 | Equal noise for all translational DOFs | Tune individual `σ` per wheel mass for better $z_5$ estimation |
 | Linear model only | Extend to nonlinear model (e.g. nonlinear damper) + use EKF/UKF |
 | Positions-only measurement | Add accelerometer model to also measure $\ddot{z}$ for richer observation |
