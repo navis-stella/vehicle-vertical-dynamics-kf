@@ -176,7 +176,7 @@ The model was run **N = 10 times** with different random seeds. Mean Square Erro
 ### Displacement & Rotation Estimates
 | $z_5$ | $\Phi$ | $\Theta$ |
 |---|---|---|
-| ![](results/z5_estimation.jpg) | ![](results/phi_roll_estimation.jpg) | ![](results/theta_pitch_estimation.jpg) |
+| ![](results/z5_estimation.jpg) | ![](results/roll_phi_estimation.jpg) | ![](results/pitch_theta_estimation.jpg) |
 
 ### Velocity Estimates
 | $\dot{z}_5$ | $\dot{\Phi}$ | $\dot{\Theta}$ |
