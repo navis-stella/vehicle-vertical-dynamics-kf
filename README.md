@@ -7,6 +7,7 @@
 ![Filter](https://img.shields.io/badge/Filter-Kalman-blueviolet)
 
 A full state estimation pipeline for the **linear vertical dynamics of a passenger vehicle** with **7 degrees of freedom (DOF)**, implemented in MATLAB and Simulink. The system is excited by four independent road profile inputs, corrupted by process and measurement noise, and the full state vector (positions + velocities) is recovered using a **discrete-time Kalman Filter**.
+
 <img src="results/mean_error_histogram.jpg" width="600"/>
 
 Developed as an examination project for the university course:  
