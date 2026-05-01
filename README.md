@@ -7,6 +7,7 @@
 ![Filter](https://img.shields.io/badge/Filter-Kalman-blueviolet)
 
 A full state estimation pipeline for the **linear vertical dynamics of a passenger vehicle** with **7 degrees of freedom (DOF)**, implemented in MATLAB and Simulink. The system is excited by four independent road profile inputs, corrupted by process and measurement noise, and the full state vector (positions + velocities) is recovered using a **discrete-time Kalman Filter**.
+![Mean Error Histogram](results/mean_error_histogram.png)
 
 Developed as an examination project for the university course:  
 *„Zustands- und Parameterschätzung am Beispiel der KFZ-Längsdynamik"*
@@ -41,7 +42,7 @@ The vehicle is modelled as a **7-DOF linear mechanical system**:
 | 6 | $\Phi$ | Roll angle — sprung mass |
 | 7 | $\Theta$ | Pitch angle — sprung mass |
 
-The four wheel masses $m_1, \ldots, m_4$ are each connected to the road via a **tyre spring-damper** ($k_R$, $d_R$) and to the sprung mass $m_5$ via **suspension spring-dampers** ($k_{Fv}$/$d_{Fv}$ front, $k_{Fh}$/$d_{Fh}$ rear). Road excitation enters through four independent base inputs $u_1, u_2, u_3, u_4$.
+The four wheel masses $m_1, \ldots, m_4$ are each connected to the road via a **tyre spring-damper** ($k_R$, $d_R$) and to the sprung mass $m_5$ via **suspension spring-dampers** ($k_{Fv}$, $d_{Fv}$ front, $k_{Fh}$, $d_{Fh}$ rear). Road excitation enters through four independent base inputs $u_1, u_2, u_3, u_4$.
 
 ### Equation of Motion
 
@@ -105,9 +106,9 @@ $$\mathbf{y}_k = \mathbf{C}\mathbf{x}_k + \mathbf{v}_k, \qquad \mathbf{v}_k \sim
 
 ### Noise Covariance Matrices
 
-$$\mathbf{Q} = T_s^2 \cdot \mathrm{diag}\!\left(\sigma_z^2,\sigma_z^2,\sigma_z^2,\sigma_z^2,\sigma_z^2,\sigma_\Phi^2,\sigma_\Theta^2,\sigma_{\dot{z}}^2,\sigma_{\dot{z}}^2,\sigma_{\dot{z}}^2,\sigma_{\dot{z}}^2,\sigma_{\dot{z}}^2,\sigma_{\dot{\Phi}}^2,\sigma_{\dot{\Theta}}^2\right)$$
+$$\mathbf{Q} = T_s^2 \cdot \mathrm{diag}\left(\sigma_z^2,\sigma_z^2,\sigma_z^2,\sigma_z^2,\sigma_z^2,\sigma_\Phi^2,\sigma_\Theta^2,\sigma_{\dot{z}}^2,\sigma_{\dot{z}}^2,\sigma_{\dot{z}}^2,\sigma_{\dot{z}}^2,\sigma_{\dot{z}}^2,\sigma_{\dot{\Phi}}^2,\sigma_{\dot{\Theta}}^2\right)$$
 
-$$\mathbf{R} = \mathrm{diag}\!\left(\sigma_{m,z}^2,\sigma_{m,z}^2,\sigma_{m,z}^2,\sigma_{m,z}^2,\sigma_{m,z}^2,\sigma_{m,\Phi}^2,\sigma_{m,\Theta}^2\right)$$
+$$\mathbf{R} = \mathrm{diag}\left(\sigma_{m,z}^2,\sigma_{m,z}^2,\sigma_{m,z}^2,\sigma_{m,z}^2,\sigma_{m,z}^2,\sigma_{m,\Phi}^2,\sigma_{m,\Theta}^2\right)$$
 
 ### Filter Equations
 
@@ -171,6 +172,16 @@ The model was run **N = 10 times** with different random seeds. Mean Square Erro
 |---|---|---|---|---|---|---|---|---|---|
 | **Sim** | 0.0027 | 2.2978 | 2.3014 | 0.0014 | 1.4751 | 1.4765 | 0.0016 | 3.0187 | 3.0203 |
 | **KF** | 0.0015 | 2.3003 | 2.3017 | 0.0018 | 1.4761 | 1.4779 | 0.0013 | 2.9974 | 2.9987 |
+
+### Displacement & Rotation Estimates
+| $z_5$ | $\Phi$ | $\Theta$ |
+|---|---|---|
+| ![](results/z5_estimation.png) | ![](results/phi_roll_estimation.png) | ![](results/theta_pitch_estimation.png) |
+
+### Velocity Estimates
+| $\dot{z}_5$ | $\dot{\Phi}$ | $\dot{\Theta}$ |
+|---|---|---|
+| ![](results/velocity_z5.png) | ![](results/roll_rate.png) | ![](results/pitch_rate.png) |
 
 **Key observations:**
 - The KF estimated positions ($z_5$, $\Phi$, $\Theta$) match the real values closely — error comparable to the simulation noise floor
